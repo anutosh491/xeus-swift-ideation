@@ -39,7 +39,7 @@
 		<div class="slides">
 
 <section data-background-image="./cosmo_victory.png" data-background-opacity="0.1">
-  <h1>xeus-cpp, the new C++ kernel for Jupyter</h1>
+  <h1> Swift in Jupyter</h1>
   <img src="/src/images/logo_scientific_computing.svg" alt="QuantStack Logo" class="title-logo">
 </section>
 <section>
@@ -51,7 +51,7 @@
       <div style="text-align: left">
         Software engineer at QuantStack<br>
         Contributes to the xeus stack<br>
-        Contributes to LLVM<br>
+        Maintains clang-repl<br>
       </div>
     </div>
     <div class="column">
@@ -65,367 +65,60 @@
     </div>
   </div>
 </section>
-<section>
-  <h2 style="margin:0 0 1em 0; text-align:left;">
-    Writing Jupyter Kernels (1/2)
-  </h2>
-  <div style="font-size:1.3em; line-height:1.6; text-align:left;">
-    <p class="fragment fade-up" style="font-weight:600; margin:0 0 .4em 0;">
-      Before 2017
-    </p>
-    <ul style="margin:0 0 1.5em 2em; padding:0;">
-      <li class="fragment fade-up">Write from scratch</li>
-      <li class="fragment fade-up">Use the kernel wrapper approach</li>
-    </ul>
-
-    <p class="fragment fade-up" style="font-weight:600; margin:0 0 .4em 0;">
-      2017: release of xeus
-    </p>
-    <ul style="margin:0 0 0 2em; padding:0;">
-      <li class="fragment fade-up">A modern C++ implementation of the Jupyter Kernel Protocol</li>
-      <li class="fragment fade-up">Not a kernel, but a tool to make kernel</li>
-    </ul>
-  </div>
-</section>
-<section>
-  <h2 style="margin:0 0 1em 0; text-align:left;">
-    Writing Jupyter Kernels (2/2)
-  </h2>
-  <div style="font-size:1.3em; line-height:1.6; text-align:left;">
-    <p class="fragment fade-up" style="font-weight:600; margin:0 0 .4em 0;">
-      After 2017: xeus-based kernels
-    </p>
-    <ul style="margin:0 0 1.5em 2em; padding:0;">
-      <li class="fragment fade-up">xeus-python</li>
-      <li class="fragment fade-up">xeus-sql, xeus-sqlite</li>
-      <li class="fragment fade-up">xeus-cling, based on Cling, a C++ interpreter developped at the CERN</li>
-    </ul>
-
-    <p class="fragment fade-up" style="font-weight:600; margin:0 0 .4em 0;">
-      2022: split of xeus
-    </p>
-    <ul style="margin:0 0 0 2em; padding:0;">
-      <li class="fragment fade-up">xeus: implementation of the Jupyter Kernel protocol with no middleware</li>
-      <li class="fragment fade-up">xeus-zmq: ZMQ-based middleware for xeus</li>
-      <li class="fragment fade-up">xeus-lite: emscripten-based middleware for xeus</li>
-    </ul>
-  </div>
-</section>
-<section>
-  <h2 style="margin:0 0 1em 0; text-align:left;">
-    The need for a new C++ kernel
-  </h2>
-  <div style="font-size:1.3em; line-height:1.6; text-align:left;">
-    <p class="fragment fade-up" style="font-weight:600; margin:0 0 .4em 0;">
-      Limitations of Cling
-    </p>
-    <ul style="margin:0 0 0 2em; padding:0;">
-      <li class="fragment fade-up">Based on an outdated version of Clang</li>
-      <li class="fragment fade-up">Limited capabilities and compatibility with modern C++ features</li>
-      <li class="fragment fade-up">Hard to maintain on all the platforms</li>
-    </ul>
-    <p class="fragment fade-up" style="font-weight:600; margin:0 0 .4em 0;">
-      xeus-cpp, based on Clang
-    </p>
-    <ul style="margin:0 0 0 2em; padding:0;">
-      <li class="fragment fade-up">Recent versions of Clang incorporated REPL in their codebase</li>
-      <li class="fragment fade-up">Extensible architecture based on plugins</li>
-      <li class="fragment fade-up">Supports modern versions of C++, and many features (CUDA, python)</li>
-    </ul>
-  </div>
-</section>
-<section>
-    <h1 style="font-size:4em; margin-bottom:0.4em; color:#d44; text-shadow:2px 2px #ffd;">🎉 LIVE DEMO 🎉</h1>
-</section>
-<section data-markdown>
-  <textarea data-template>
-    <h1 style="font-size: 3.5em; margin-bottom: 0.2em;">
-      Xeus-Cpp-Lite
-    </h1>
-
-    <h2 class="fragment" style="font-size: 2em; font-weight: normal; margin-top: 0;">
-      Xeus-Cpp + JupyterLite
-    </h2>
-
-    <div class="fragment" style="margin-top: 1em; font-size: 1.8em; color: #444;">
-      Interpreting C++ in the Browser
-    </div>
-  </textarea>
-</section>
-<section data-markdown>
-  <textarea data-template>
-    <h1 style="font-size:3em; margin:0 0 .6em 0;">Xeus-Cpp-Lite</h1>
-
-    <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start;">
-      <!-- Link banner -->
-      <div style="grid-column:1 / -1;background:#f6f6ff;border:1px solid #e0e0ff;padding:1rem 1.25rem;border-radius:14px;text-align:center;">
-        <div style="font-weight:600;margin-bottom:.5rem;">Yesterday’s talk: JupyterLite + Emscripten-Forge</div>
-        <a href="https://isabelparedes.github.io/pydata2025/" target="_blank" style="display:inline-block;padding:.5rem 1rem;border-radius:10px;border:1px solid #c9ccff;text-decoration:none;color:#d44;">
-          Slides here ↗
-        </a>
-      </div>
-
-      <!-- Column 1 -->
-      <div style="background:#fff;border:1px solid #eee;border-radius:16px;padding:1.5rem;box-shadow:0 6px 20px rgba(0,0,0,.06);min-height:200px;display:flex;flex-direction:column;justify-content:space-between;">
-        <div style="font-size:1.1em;font-weight:700;margin-bottom:.6rem;">JupyterLite</div>
-        <ul style="line-height:1.5;margin:0;">
-          <li class="fragment">JupyterLab distribution in the browser</li>
-          <li class="fragment">Powered by WebAssembly</li>
-        </ul>
-      </div>
-
-      <!-- Column 2 -->
-      <div style="background:#fff;border:1px solid #eee;border-radius:16px;padding:1.5rem;box-shadow:0 6px 20px rgba(0,0,0,.06);min-height:200px;display:flex;flex-direction:column;justify-content:space-between;">
-        <div style="font-size:1.1em;font-weight:700;margin-bottom:.6rem;">Emscripten-Forge</div>
-        <ul style="line-height:1.5;margin:0;">
-          <li class="fragment">Emscripten + Conda-Forge</li>
-          <li class="fragment">Compiling packages for the emscripten-wasm32 target</li>
-        </ul>
-      </div>
-    </div>
-  </textarea>
-</section>
-
-<section>
-  <h3 style="font-size:2.2em; margin:0 0 1em 0; text-align:left;">
-    Runtime Execution: Native vs Wasm
-  </h3>
-
-  <div style="font-size:1.3em; line-height:1.6; text-align:left;">
-
-    <p class="fragment fade-up" style="font-weight:600; margin:0 0 .4em 0;">
-      Clang-Repl on Native Platforms
-    </p>
-    <ul style="margin:0 0 1.5em 2em; padding:0;">
-      <li class="fragment fade-up">Uses LLVM’s ORC JIT for runtime compilation</li>
-      <li class="fragment fade-up">Compiles code & executes directly from memory</li>
-    </ul>
-
-    <p class="fragment fade-up" style="font-weight:600; margin:0 0 .4em 0;">
-      Clang-Repl in the Browser
-    </p>
-    <ul style="margin:0 0 0 2em; padding:0;">
-      <li class="fragment fade-up">WebAssembly enforces a strict sandbox model</li>
-      <li class="fragment fade-up">Can’t write or modify executable memory at runtime</li>
-      <li class="fragment fade-up">Memory is separated into code and data (Harvard architecture)</li>
-    </ul>
-
-  </div>
-</section>
 
 <section>
   <h3 style="font-size:2.1em; margin:0 0 1em 0; text-align:left;">
-    WASM backend for Clang-Repl
-  </h3>
-
-  <div style="font-size:1.15em; line-height:1.6; text-align:left;">
-
-    <p class="fragment fade-up" style="margin:0 0 1em 0; font-size:1.02em;">
-      LLVM 17 introduced a <strong>WASM-specific IncrementalExecutor</strong> that avoids LLVM's ORC JIT
-    </p>
-
-    <p class="fragment fade-up" style="margin:0 0 .8em 0; font-size:1.02em;">
-      The new <strong>WasmIncrementalExecutor</strong> handles the wasm execution as follows:
-    </p>
-
-    <ul style="margin:0 0 0 2em; padding:0; font-size:0.9em;">
-      <li class="fragment fade-up">Each REPL input is parsed into a <code>Partial Translation Unit (PTU)</code></li>
-      <li class="fragment fade-up"><code>PTU</code> is lowered to <code>LLVM IR</code>, then compiled to a WASM object file</li>
-      <li class="fragment fade-up">The object is linked with <code>wasm-ld</code> into a standalone binary (<code>incr_module_x.wasm</code>)</li>
-      <li class="fragment fade-up">The side module is dynamically loaded with emscripten’s <code>dlopen</code>, extending the main module</li>
-    </ul>
-
-  </div>
-</section>
-
-<section>
-  <h3 style="font-size:2.1em; margin:0 0 1em 0; text-align:left;">
-    WASM backend for Clang-Repl
+    Inspiration for this work
   </h3>
 
   <div style="font-size:1.15em; line-height:1.6; text-align:left;">
 
     <p class="fragment fade-up" style="margin:0 0 .8em 0; font-size:1.05em;">
-      These modules:
+      Xeus-Cpp: The C/C++ kernel
     </p>
 
     <ul style="margin:0 0 1em 2em; padding:0; font-size:1.05em;">
-      <li class="fragment fade-up">Share the same memory as the main <code>wasm</code> module</li>
-      <li class="fragment fade-up">Resolve symbols from earlier cells <em>(cross-cell linking)</em></li>
-      <li class="fragment fade-up">Mimic dynamic linking, even though <code>WASM</code> doesn’t support shared libraries traditionally</li>
+      <li class="fragment fade-up">Native Kernel : Xeus-Cpp works on macos/linux/windows</li>
+      <li class="fragment fade-up">Wasm Kernel : Xeus-Cpp-lite works entirely in your browser</li>
+      <li class="fragment fade-up">Debugger Support for Xeus-Cpp</li>
     </ul>
-
-    <p class="fragment fade-up" style="margin-top:1em; font-size:1.05em; font-weight:600; color:#333;">
-      🚀 This model effectively turned <strong>Clang-Repl</strong> into a live REPL for WebAssembly, enabling <strong>dynamic incremental C++</strong> in the browser!
-    </p>
 
   </div>
 </section>
 
 <section>
-  <h3 style="font-size:2.2em; text-align:center;">
-    Xeus-Cpp-Lite Configuration
-  </h3>
+  <!-- Title -->
+  <h2 style="font-size:2.4em; font-weight:700; text-align:center; margin-bottom:0.8em;">
+    Native Kernel
+  </h2>
 
+  <!-- Link -->
   <div style="text-align:center;">
-    <img src="src/images/xeus-cpp-lite-configuration.png"
-         alt="Xeus-Cpp-Lite configuration diagram"
-         style="max-width:85%;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.25);margin-top:1em;"
-         class="fragment fade-up"/>
-  </div>
-
-  <p style="font-size:0.9em; color:#555; margin-top:0.6em;" class="fragment fade-up">
-    Fig: Configuration flow for Xeus-Cpp-Lite in the browser
-  </p>
-</section>
-
-<section data-markdown>
-  <textarea data-template>
-    <h1 style="font-size:4em; margin-bottom:0.4em; color:#d44; text-shadow:2px 2px #ffd;">🎉 LIVE DEMO 🎉</h1>
-
-    <h2 class="fragment fade-up" style="font-size:2em; color:#444; margin-bottom:1em;">
-      Try it out on your phone (Android 📱 or iOS 🍏)!
-    </h2>
-
-    <a href="https://compiler-research.org/xeus-cpp-wasm/lab/index.html" target="_blank"
-       style="display:inline-block; font-size:1.5em; padding:0.8em 1.5em; border-radius:14px;
-              background:#f6f6ff; border:2px solid #c9ccff; text-decoration:none; color:#d44;
-              font-weight:700; box-shadow:0 6px 20px rgba(0,0,0,.1);"
-       class="fragment fade-in">
-      👉 Launch Xeus-Cpp-Lite in your Browser
+    <a href="https://github.com/compiler-research/xeus-cpp/blob/main/notebooks/xeus-cpp.ipynb"
+       target="_blank"
+       style="font-size:1.4em; font-weight:600; color:#1a73e8; text-decoration:none;
+              border:2px solid #1a73e8; padding:0.5em 1.2em; border-radius:8px;
+              transition:all 0.2s ease-in-out;">
+      🔗 Click here to open the example notebook
     </a>
-  </textarea>
+  </div>
 </section>
 
 <section>
   <!-- Title -->
-  <h2 style="font-size:2.4em; font-weight:700; text-align:center; margin-bottom:0.6em;">
-    Timeit Magic
+  <h2 style="font-size:2.4em; font-weight:700; text-align:center; margin-bottom:0.8em;">
+    WASM Kernel
   </h2>
 
-  <!-- Image (timeit gif) -->
+  <!-- Link -->
   <div style="text-align:center;">
-    <img src="src/images/timeit_latest.gif"
-         alt="Timeit magic demo"
-         style="max-width:70%; max-height:auto; display:inline-block; margin:0 auto;
-                border-radius:10px; box-shadow:0 8px 28px rgba(0,0,0,.25);" />
-  </div>
-</section>
-
-<section>
-  <!-- Title -->
-  <h2 style="font-size:2.4em; font-weight:700; text-align:center; margin-bottom:0.4em;">
-    Loading <span style="font-weight:800;">third-party/custom</span> libs
-  </h2>
-
-  <!-- Subtitle ribbon (smaller, lighter focus) -->
-  <div style="max-width:700px;margin:0 auto 1.2em auto;">
-    <div style="background:#7B2CF3;color:#fff;font-weight:600;text-align:center;
-                padding:.5em 1em;border-radius:8px;font-size:1em;">
-      1. Create a simple C++ module
-    </div>
-  </div>
-
-  <!-- Large Code block (main focus) -->
-  <div style="max-width:1500px;margin:0 auto;box-shadow:0 10px 28px rgba(0,0,0,.25);
-              border-radius:8px; overflow:hidden; font-size:1.5em;">
-    <pre><code class="language-cpp">
-// custom_module.cpp
-#include &lt;iostream&gt;
-
-extern "C" {
-  void my_custom_function() {
-    std::cout &lt;&lt; "Hello from my_custom_function!" &lt;&lt; std::endl;
-  }
-}
-    </code></pre>
-  </div>
-</section>
-
-<section>
-  <!-- Title -->
-  <h2 style="font-size:2.4em; font-weight:700; text-align:center; margin-bottom:0.4em;">
-    Loading <span style="font-weight:800;">third-party/custom</span> libs
-  </h2>
-
-  <!-- Subtitle ribbon (smaller, lighter focus) -->
-  <div style="max-width:1000px;margin:0 auto 1.2em auto;">
-    <div style="background:#7B2CF3;color:#fff;font-weight:600;text-align:center;
-                padding:.5em 1em;border-radius:8px;font-size:1em;">
-      2. Compile it to a WebAssembly shared object
-    </div>
-  </div>
-
-  <!-- Large Code block (main focus) -->
-  <div style="max-width:1500px;margin:0 auto;box-shadow:0 10px 28px rgba(0,0,0,.25);
-              border-radius:8px; overflow:hidden; font-size:1.8em;">
-    <pre><code class="language-cpp">
-emcc custom_module.cpp \
-    -O2 \
-    -s SIDE_MODULE=1 \
-    -s WASM=1 \
-    -fPIC \
-    -o custom_module.so
-    </code></pre>
-  </div>
-</section>
-
-<section>
-  <!-- Title -->
-  <h2 style="font-size:2.4em; font-weight:700; text-align:center; margin-bottom:0.6em;">
-    Loading <span style="font-weight:800;">third-party/custom</span> libs
-  </h2>
-
-  <!-- Image (dlopen) -->
-  <div style="text-align:center;">
-    <img src="src/images/dlopen.png"
-         alt="dlopen flow"
-         style="max-width:90%; max-height:90vh; display:inline-block; margin:0 auto;
-                border-radius:10px; box-shadow:0 8px 28px rgba(0,0,0,.25);" />
-  </div>
-</section>
-
-<section>
-  <!-- Title -->
-  <h3 style="font-size:2.6em; margin:0 0 1em 0; text-align:left;">
-    Near Future Work
-  </h3>
-
-  <!-- Bullet Points Wrapper with gray box -->
-  <div style="background:#f5f5f5; padding:1.2em 1.5em; border-radius:8px;
-              font-size:1.6em; line-height:1.8; text-align:left; max-width:80%;">
-    <ul style="margin:0; padding-left:1.2em;">
-      <li style="font-weight:600; margin:0 0 .8em 0;">
-        Last Value Printing
-      </li>
-      <li style="font-weight:600; margin:0 0 .8em 0;">
-        Debugger Support
-      </li>
-      <li style="font-weight:600; margin:0 0 .8em 0;">
-        CUDA Support
-      </li>
-      <li style="font-weight:600; margin:0 0 .8em 0;">
-        Python Interoperatability
-      </li>
-      <li style="font-weight:600; margin:0;">
-        Multiple Interpreters
-      </li>
-    </ul>
-  </div>
-</section>
-
-<section>
-  <!-- Title -->
-  <h2 style="font-size:2.8em; font-weight:700; text-align:center; margin-bottom:0.6em;">
-    Last Value Printing
-  </h2>
-
-  <!-- Image (last value gif) -->
-  <div style="text-align:center;">
-    <img src="src/images/last_value.gif"
-         alt="Last Value Printing demo"
-         style="width:80%; height:auto; display:block; margin:0 auto;
-                border-radius:12px; box-shadow:0 8px 32px rgba(0,0,0,.35);" />
+    <a href="https://compiler-research.org/xeus-cpp-wasm/lab/index.html"
+       target="_blank"
+       style="font-size:1.4em; font-weight:600; color:#1a73e8; text-decoration:none;
+              border:2px solid #1a73e8; padding:0.5em 1.2em; border-radius:8px;
+              transition:all 0.2s ease-in-out;">
+      🔗 Click here to open the example notebook
+    </a>
   </div>
 </section>
 
@@ -447,108 +140,717 @@ emcc custom_module.cpp \
 </section>
 
 <section>
-  <!-- Title -->
-  <h2 style="font-size:2.2em; font-weight:700; text-align:center; margin-bottom:0.8em;">
-    CUDA Support
-  </h2>
+  <h3 style="font-size:2.1em; margin:0 0 1em 0; text-align:left;">
+    What is being proposed here
+  </h3>
 
-  <!-- Video (CUDA demo) -->
-  <div style="text-align:center; padding-bottom:2em;">
-    <video src="src/images/CUDA_Demo.mp4"
-           controls
-           autoplay
-           loop
-           muted
-           playsinline
-           style="width:75%; height:auto; display:block; margin:0 auto;
-                  border-radius:10px; box-shadow:0 8px 32px rgba(0,0,0,.35);" >
-      Your browser does not support the video tag.
-    </video>
-  </div>
-</section>
+  <div style="font-size:1.15em; line-height:1.6; text-align:left;">
 
-<section>
-  <!-- Title -->
-  <h2 style="font-size:2.2em; font-weight:700; text-align:center; margin-bottom:0.8em;">
-    Python Interoperability
-  </h2>
-
-  <!-- Video (Cppyy demo) -->
-  <div style="text-align:center; padding-bottom:2em;">
-    <video src="src/images/Cppyy-Demo.mp4"
-           controls
-           autoplay
-           loop
-           muted
-           playsinline
-           style="width:75%; height:auto; display:block; margin:0 auto;
-                  border-radius:10px; box-shadow:0 8px 32px rgba(0,0,0,.35);" >
-      Your browser does not support the video tag.
-    </video>
-  </div>
-</section>
-
-<section>
-  <!-- Title -->
-  <h2 style="font-size:2.2em; font-weight:700; text-align:center; margin-bottom:0.8em;">
-    Multiple Interpreters
-  </h2>
-
-  <!-- Video (Multiple Interpreter) -->
-  <div style="text-align:center; padding-bottom:2em;">
-    <video src="src/images/Multi-Interp.mp4"
-           controls
-           autoplay
-           loop
-           muted
-           playsinline
-           style="width:75%; height:auto; display:block; margin:0 auto;
-                  border-radius:10px; box-shadow:0 8px 32px rgba(0,0,0,.35);" >
-      Your browser does not support the video tag.
-    </video>
-  </div>
-</section>
-
-<section>
-  <!-- Title -->
-  <h2 style="font-size:2em; font-weight:700; text-align:center; margin-bottom:0.8em;">
-    Acknowledgements
-  </h2>
-
-  <!-- Bullet-style thanks -->
-  <div style="font-size:1.4em; text-align:center; margin-bottom:1.5em; color:#444; line-height:1.8;">
-    <p><strong>Compiler Research Group</strong></p>
-    <img src="src/images/compiler_research.png"
-         alt="Compiler Research Group logo"
-         style="max-width:260px; margin:0.5em auto 1em auto; display:block;" />
-
-    <p><strong>Google Summer of Code</strong></p>
-    <img src="src/images/gsoc.png"
-         alt="Google Summer of Code logo"
-         style="max-width:280px; margin:0.5em auto; display:block;" />
-  </div>
-</section>
-
-<section>
-  <!-- Title -->
-  <h1 style="font-size:3em; font-weight:800; text-align:center; margin-bottom:0.3em;">
-    The END
-  </h1>
-
-  <!-- Subtitle -->
-  <h2 style="font-size:1.5em; font-weight:600; text-align:center; margin-bottom:0.7em; color:#444;">
-    Questions?
-  </h2>
-
-  <!-- QR Code -->
-  <div style="text-align:center; padding-top:1em;">
-    <img src="src/images/qr.png"
-         alt="QR code to slides"
-         style="width:15%; height:auto; display:block; margin:0 auto;
-                border-radius:8px; box-shadow:0 6px 20px rgba(0,0,0,.25);" />
-    <p style="margin-top:0.8em; font-size:1.4em; color:#333; font-weight:500;">
-      Scan for slides
+    <p class="fragment fade-up" style="margin:0 0 .8em 0; font-size:1.05em;">
+      Xeus-Swift : The new swift Jupyter kernel
     </p>
+
+    <ul style="margin:0 0 1em 2em; padding:0; font-size:1.05em;">
+      <li class="fragment fade-up">Native Kernel : Xeus-Swift, expected to work on native platforms</li>
+      <li class="fragment fade-up">Wasm Kernel : Xeus-Swift-lite works entirely in your browser</li>
+      <li class="fragment fade-up">Debugger Support for Xeus-Swift</li>
+    </ul>
+
+  </div>
+</section>
+
+<section>
+  <!-- Title -->
+  <h2 style="font-size:2.4em; font-weight:700; text-align:center; margin-bottom:0.6em;">
+    Xeus Architecture
+  </h2>
+
+  <!-- Image (dlopen) -->
+  <div style="text-align:center;">
+    <img src="src/images/dlopen.png"
+         alt="dlopen flow"
+         style="max-width:90%; max-height:90vh; display:inline-block; margin:0 auto;
+                border-radius:10px; box-shadow:0 8px 28px rgba(0,0,0,.25);" />
+  </div>
+</section>
+
+<section>
+  <!-- Title -->
+  <h2 style="font-size:2.4em; font-weight:700; text-align:center; margin-bottom:1em;">
+    Coming up with Xeus-Cpp
+  </h2>
+
+  <!-- Content -->
+  <div style="background:#f5f5f5; padding:1.5em 2em; border-radius:10px; 
+              max-width:85%; margin:0 auto; font-size:1.3em; line-height:1.8; color:#222;">
+    <ul style="list-style-type: disc; padding-left:1.2em;">
+      <li>
+        The <strong>Interpreter</strong> and <strong>Debugger</strong> are well isolated —
+        the kernel author must implement these components.
+      </li>
+    </ul>
+
+    <hr style="margin:1.5em 0; border:none; border-top:1px solid #ddd;"/>
+
+    <p style="font-weight:600; margin-bottom:0.5em;">For <strong>xeus-cpp</strong>:</p>
+    <ul style="list-style-type: circle; padding-left:1.2em;">
+      <li>
+        <strong>Interpreter</strong> — Powered by LLVM’s <code>clang-repl</code> (the tool)
+        / <code>libclangInterpreter.a</code> (the library)
+      </li>
+      <li>
+        <strong>Debugger</strong> — Powered by <code>LLDB</code> and <code>LLDB-DAP</code>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h3 style="font-size:2.1em; margin:0 0 1em 0; text-align:left;">
+    What we have in Swift
+  </h3>
+
+  <div style="font-size:1.15em; line-height:1.6; text-align:left;">
+
+    <p class="fragment fade-up" style="margin:0 0 1em 0; font-size:1.02em;">
+      An LLDB based REPL
+    </p>
+
+    <p class="fragment fade-up" style="margin:0 0 .8em 0; font-size:1.02em;">
+      Downsides:
+    </p>
+
+    <ul style="margin:0 0 0 2em; padding:0; font-size:0.9em;">
+      <li class="fragment fade-up">A debugger centric REPL</code></li>
+      <li class="fragment fade-up">The wasm use cases</li>
+    </ul>
+
+  </div>
+</section>
+
+<section>
+  <!-- Title -->
+  <h2 style="font-size:2.6em; font-weight:800; text-align:center; margin-bottom:0.6em;">
+    Debugger Centric REPL
+  </h2>
+
+  <!-- Content -->
+  <div style="background:#f8f8f8; padding:1.4em 2em; border-radius:12px;
+              max-width:80%; margin:0 auto; font-size:1.35em; line-height:1.8; color:#222;
+              box-shadow:0 4px 20px rgba(0,0,0,0.08);">
+    
+    <ul style="list-style-type: disc; padding-left:1.4em; margin:0;">
+      <li style="margin-bottom:0.8em;">
+        In the <strong>xeus architecture</strong>, the <strong>interpreter</strong> and 
+        <strong>debugger</strong> are designed as <em>independent components</em> — 
+        each handling a distinct request stream.
+      </li>
+
+      <li style="margin-bottom:0.8em;">
+        The <strong>interpreter</strong> manages <em>code execution requests</em>, 
+        while the <strong>debugger</strong> manages <em>cell debugging requests</em>, 
+        ensuring that runtime execution and step-through debugging remain isolated.
+      </li>
+
+      <li>
+        A <strong>compiler-centric REPL</strong> like <code>clang-repl</code> fits this model naturally — 
+        providing a unified compilation context while keeping execution and debugging 
+        pathways cleanly separated.
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <!-- Title -->
+  <h2 style="font-size:2.6em; font-weight:800; text-align:center; margin-bottom:0.6em;">
+    Compiling lldb to wasm
+  </h2>
+
+  <!-- Content -->
+  <div style="background:#f8f8f8; padding:1.4em 2em; border-radius:12px;
+              max-width:80%; margin:0 auto; font-size:1.35em; line-height:1.8; color:#222;
+              box-shadow:0 4px 20px rgba(0,0,0,0.08);">
+    
+    <ul style="list-style-type: disc; padding-left:1.4em; margin:0;">
+      <li style="margin-bottom:0.8em;">
+        Xeus-Cpp-lite that works entirely in the browser is powered by JupyterLite and wasm.
+      </li>
+
+      <li style="margin-bottom:0.8em;">
+        So this involves compiling llvm, clang, clang-repl to emscripten-wasm32. Hosted on Emscripten-forge.
+      </li>
+
+      <li>
+        Compiling LLDB to wasm doesn't make sense because on its dependency on system calls.
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <!-- Title -->
+  <h2 style="font-size:2.4em; font-weight:700; text-align:center; margin-bottom:0.6em;">
+    Attempt compiling lldb to wasm
+  </h2>
+
+  <!-- Image (dlopen) -->
+  <div style="text-align:center;">
+    <img src="src/images/dlopen.png"
+         alt="dlopen flow"
+         style="max-width:90%; max-height:90vh; display:inline-block; margin:0 auto;
+                border-radius:10px; box-shadow:0 8px 28px rgba(0,0,0,.25);" />
+  </div>
+</section>
+
+<section>
+  <!-- Title -->
+  <h2 style="font-size:2.6em; font-weight:800; text-align:center; margin-bottom:0.4em;">
+    Proposing a Compiler-Centric REPL
+  </h2>
+
+  <!-- Subheading -->
+  <h3 style="font-size:1.6em; font-weight:600; text-align:center; color:#333; margin-bottom:1.2em;">
+    Understanding <code>clang-repl</code> for Native Platforms
+  </h3>
+
+  <!-- Sequential Flow -->
+  <div style="font-size:1.4em; text-align:left; color:#222; line-height:1.8; max-width:75%; margin:0 auto;">
+    <p class="fragment fade-up"><code>input_line_X → PTU (Incremental AST)</code></p>
+    <p class="fragment fade-up"><code>→ LLVM IR</code></p>
+    <p class="fragment fade-up"><code>→ LLVM ORC JIT</code></p>
+  </div>
+</section>
+<section>
+  <!-- Title -->
+  <h2 style="font-size:2.4em; font-weight:700; text-align:center; margin-bottom:0.6em;">
+    Clang-repl on Native Platforms
+  </h2>
+
+  <!-- Image (dlopen) -->
+  <div style="text-align:center;">
+    <img src="src/images/dlopen.png"
+         alt="dlopen flow"
+         style="max-width:90%; max-height:90vh; display:inline-block; margin:0 auto;
+                border-radius:10px; box-shadow:0 8px 28px rgba(0,0,0,.25);" />
+  </div>
+</section>
+
+<section>
+  <!-- Title -->
+  <h2 style="font-size:2.6em; font-weight:800; text-align:center; margin-bottom:0.4em;">
+    Proposing a Compiler-Centric REPL
+  </h2>
+
+  <!-- Subheading -->
+  <h3 style="font-size:1.6em; font-weight:600; text-align:center; color:#333; margin-bottom:1.2em;">
+    Understanding <code>clang-repl</code> for Wasm Platforms
+  </h3>
+
+  <!-- Sequential Flow -->
+  <div style="font-size:1.4em; text-align:left; color:#222; line-height:1.8; max-width:75%; margin:0 auto;">
+    <p class="fragment fade-up"><code>input_line_X → PTU (Incremental AST)</code></p>
+    <p class="fragment fade-up"><code>→ LLVM IR</code></p>
+    <p class="fragment fade-up"><code>→ incr_module_X.so → incr_module_X.wasm</code></p>
+    <p class="fragment fade-up"><code>→ loaded on top of xeus-cpp.wasm using emscripten’s dlopen</code></p>
+  </div>
+</section>
+
+<section>
+  <!-- Title -->
+  <h2 style="font-size:2.6em; font-weight:800; text-align:center; margin-bottom:0.8em;">
+    ClangInterpreter Design
+  </h2>
+
+  <!-- Content -->
+  <div style="background:#f8f8f8; padding:1.8em 2.2em; border-radius:12px;
+              max-width:80%; margin:0 auto; font-size:1.3em; line-height:1.9;
+              color:#222; box-shadow:0 4px 20px rgba(0,0,0,0.08);">
+    <ul style="list-style-type: disc; padding-left:1.5em;">
+      <li class="fragment fade-up">
+        <strong>clang-repl</strong> — uses <strong>Clang</strong> for frontend/parsing 
+        and <strong>LLVM ORC JIT</strong> for execution.
+      </li>
+      <li class="fragment fade-up">
+        The <strong>Interpreter</strong> class can be viewed as composed of two main components: 
+        <strong>IncrementalParser</strong> and <strong>IncrementalExecutor</strong>.
+      </li>
+      <li class="fragment fade-up">
+        <strong>IncrementalParser</strong> — manages the parser internally 
+        and represents the “frontend” half of the interpreter.
+      </li>
+      <li class="fragment fade-up">
+        <strong>IncrementalExecutor</strong> — manages the <strong>LLJIT</strong> for native platforms 
+        or the <strong>WebAssembly</strong> execution flow for wasm targets.
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2 style="margin:0 0 1em 0; text-align:left;">
+    Ideation 
+  </h2>
+  <div style="font-size:1.3em; line-height:1.6; text-align:left;">
+    <p class="fragment fade-up" style="font-weight:600; margin:0 0 .4em 0;">
+      Bigger Picture/Goal
+    </p>
+    <ul style="margin:0 0 1.5em 2em; padding:0;">
+      <li class="fragment fade-up">Implement compiler centric swift-repl</li>
+      <li class="fragment fade-up">Plug libSwiftInterpreter with xeus to get xeus-swift</li>
+      <li class="fragment fade-up">Theoretically xeus-swift-lite and xeus-swift debugger are both possibl through this approach.</li>
+    </ul>
+
+    <p class="fragment fade-up" style="font-weight:600; margin:0 0 .4em 0;">
+      Baby Steps
+    </p>
+    <ul style="margin:0 0 0 2em; padding:0;">
+      <li class="fragment fade-up">Clang-repl being maintained on since the last few years</li>
+      <li class="fragment fade-up">Can be understood through an AST dump</li>
+      <li class="fragment fade-up">Let me know what you can spot ?</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <!-- Title -->
+  <h2 style="font-size:2.4em; font-weight:700; text-align:center; margin-bottom:0.4em;">
+    clang-repl AST dump
+  </h2>
+
+  <!-- Large Code block (main focus) -->
+  <div style="max-width:1500px;margin:0 auto;box-shadow:0 10px 28px rgba(0,0,0,.25);
+              border-radius:8px; overflow:hidden; font-size:1.8em;">
+    <pre><code class="language-cpp">
+emcc custom_module.cpp \
+    -O2 \
+    -s SIDE_MODULE=1 \
+    -s WASM=1 \
+    -fPIC \
+    -o custom_module.so
+    </code></pre>
+  </div>
+</section>
+
+<section>
+  <h2 style="margin:0 0 1em 0; text-align:left;">
+    What can be seen ?
+  </h2>
+  <div style="font-size:1.3em; line-height:1.6; text-align:left;">
+    <p class="fragment fade-up" style="font-weight:600; margin:0 0 .4em 0;">
+      3 TUDECL nodes
+    </p>
+    <ul style="margin:0 0 1.5em 2em; padding:0;">
+      <li class="fragment fade-up">1 for Builtin, 1 for Runtimes, 1 for Input line 1</li>
+      <li class="fragment fade-up">Each TUDECL node has links with the previous node</li>
+    </ul>
+
+    <p class="fragment fade-up" style="font-weight:600; margin:0 0 .4em 0;">
+      What was done to achieve this ?
+    </p>
+    <ul style="margin:0 0 1.5em 2em; padding:0;">
+      <li class="fragment fade-up"> The concept of PTU was introduced</li>
+      <li class="fragment fade-up"> Partial Translation Unit</li>
+      <li class="fragment fade-up"> The IncrementalParser was allowed to add TUDECL nodes to the AST Context</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2 style="margin:0 0 1em 0; text-align:left;">
+    Add code block here
+  </h2>
+</section>
+
+<section>
+  <!-- Title -->
+  <h2 style="font-size:2.6em; font-weight:800; text-align:center; margin-bottom:0.4em;">
+    What happens currently ?
+  </h2>
+
+  <!-- Sequential Flow -->
+  <div style="font-size:1.4em; text-align:left; color:#222; line-height:1.8; max-width:75%; margin:0 auto;">
+    <p class="fragment fade-up"><code>1AST/ASTCONTEXT</code></p>
+    <p class="fragment fade-up"><code>→ 1TranslationUnit</code></p>
+    <p class="fragment fade-up"><code>→ many Partial Translation Units or PTUs (one per input)</code></p>
+  </div>
+</section>
+
+<section>
+  <h3 style="font-size:2.1em; margin:0 0 1em 0; text-align:left;">
+    What is a PTU ?
+  </h3>
+
+  <div style="font-size:1.15em; line-height:1.6; text-align:left;">
+
+    <p class="fragment fade-up" style="margin:0 0 1em 0; font-size:1.02em;">
+      A Partial Translation Unit (PTU) represents the incremental additions to the AST 
+      corresponding to each input line in the REPL.
+    </p>
+    <ul style="list-style-type: disc; padding-left:1.5em;">
+      <li class="fragment fade-up">
+        A <strong>Partial Translation Unit (PTU)</strong> corresponds to one user input.
+      </li>
+      <li class="fragment fade-up">
+        Each PTU contains a single <strong>TranslationUnitDecl</strong> node 
+        and the <strong>LLVM IR</strong> generated from that input.
+      </li>
+      <li class="fragment fade-up">
+        1 Partial unit -> {1 TUDecl node + the LLVM IR generated from that input}
+      </li>
+    </ul>
+
+  </div>
+</section>
+
+<section>
+  <!-- Title -->
+  <h2 style="font-size:2.6em; font-weight:800; text-align:center; margin-bottom:0.4em;">
+    What happens currently ?
+  </h2>
+
+  <!-- Sequential Flow -->
+  <div style="font-size:1.4em; text-align:left; color:#222; line-height:1.8; max-width:75%; margin:0 auto;">
+    <p class="fragment fade-up"><code>1AST/ASTCONTEXT</code></p>
+    <p class="fragment fade-up"><code>→ 1TranslationUnit</code></p>
+    <p class="fragment fade-up"><code>→ many Partial Translation Units or PTUs (one per input)</code></p>
+    <p class="fragment fade-up"><code>→ Many TUDECL nodes</code></p>
+    <p class="fragment fade-up"><code>→ JIT the IR generated</code></p>
+  </div>
+</section>
+
+<section>
+  <h2 style="margin:0 0 1em 0; text-align:left;">
+    Baby steps (1st iteration)
+  </h2>
+  <div style="font-size:1.3em; line-height:1.6; text-align:left;">
+    <p class="fragment fade-up" style="font-weight:600; margin:0 0 .4em 0;">
+      Why we shouldn't jump to 2nd iteration straightaway
+    </p>
+    <ul style="margin:0 0 1.5em 2em; padding:0;">
+      <li class="fragment fade-up">Obviously making changes directly to the fundamental places which isn't recommeding </li>
+      <li class="fragment fade-up">Decl.h, ASTContext.h etc</li>
+    </ul>
+
+    <p class="fragment fade-up" style="font-weight:600; margin:0 0 .4em 0;">
+      Focus on clang-repl 1st draft
+    </p>
+    <ul style="margin:0 0 1.5em 2em; padding:0;">
+      <li class="fragment fade-up"> 1 AST/ASTContext -> 1 TranslationUnit -> 1 TUdecl node</li>
+      <li class="fragment fade-up"> Keep track of incoming decls for each delta</li>
+      <li class="fragment fade-up"> Generate LLVM IR for those decls</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2 style="margin:0 0 1em 0; text-align:left;">
+    Add transaction class here
+  </h2>
+</section>
+
+<section>
+  <h2 style="margin:0 0 1em 0; text-align:left;">
+    First vs Second Iteration
+  </h2>
+
+  <div style="font-size:1.3em; line-height:1.6; text-align:left;">
+    <p class="fragment fade-up" style="font-weight:600; margin:0 0 .4em 0;">
+      Commit History
+    </p>
+    <ul style="margin:0 0 1.5em 2em; padding:0;">
+      <li class="fragment fade-up">
+        First Iteration:
+        <a href="https://github.com/llvm/llvm-project/commit/44a4000181e1a25027e87f2ae4e71cb876a7a275#diff-065d5a2420c7cd376265089b3086d072b8fea4422ab792ba431209da24aa36fe"
+           target="_blank">Commit 44a4000</a>
+      </li>
+      <li class="fragment fade-up">
+        Second Iteration:
+        <a href="https://github.com/llvm/llvm-project/commit/11b47c103a36371576711cae1f7527c26f78efb5#diff-3c829117f7bf04282a093494e706d3818825fb01628df71ce0c3e2e4fb5aa261"
+           target="_blank">Commit 11b47c1</a>
+      </li>
+    </ul>
+
+    <p class="fragment fade-up" style="font-weight:600; margin:0 0 .4em 0;">
+      Why the 2nd Iteration
+    </p>
+    <ul style="margin:0 0 1.5em 2em; padding:0;">
+      <li class="fragment fade-up">Better error recovery</li>
+      <li class="fragment fade-up">Isolation of incoming deltas</li>
+      <li class="fragment fade-up">Aids debugging for <code>clang-repl</code></li>
+      <li class="fragment fade-up">
+        Introduces <code>%undo</code> command — enables redefinition and flexible workflows
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2 style="margin:0 0 1em 0; text-align:left;">
+    Surprise Surprise : We already have the baby
+  </h2>
+
+  <div style="font-size:1.3em; line-height:1.6; text-align:left;">
+    <p class="fragment fade-up" style="font-weight:600; margin:0 0 .4em 0;">
+      What was present upstream
+    </p>
+    <ul style="margin:0 0 1.5em 2em; padding:0;">
+      <li class="fragment fade-up">
+        A compiler centric REPL
+      </li>
+      <li class="fragment fade-up">
+        Commit:
+        <a href="https://github.com/swiftlang/swift/commit/38261ce1f39b2648519f656d5ba2a6764a4f95ad#diff-73992018bbea619aae8603e5987b40a1ff06a3cb2f0a4f3bb1cca8ce134e1fa8"
+          target="_blank">
+          38261ce
+        </a>
+      </li>
+
+    </ul>
+
+    <p class="fragment fade-up" style="font-weight:600; margin:0 0 .4em 0;">
+      How this works as per my understanding
+    </p>
+    <ul style="margin:0 0 1.5em 2em; padding:0;">
+      <li class="fragment fade-up">1AST/ASTCONTEXT -> 1 Module -> 1 ModuleDecl -> 1SourceFile</li>
+      <li class="fragment fade-up">SourceFile being incrementally updated with deltas</li>
+      <li class="fragment fade-up">PersistantParserstate plays the role of IncrementalParser</li>
+      <li class="fragment fade-up">PersistantParserstate -> parseintosourcefile</li>
+      <li class="fragment fade-up">-> incrementally generate SILModule -> generate LLVM IR module -> JIT</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2 style="margin:0 0 1em 0; text-align:left;">
+    What can we come up with today ?
+  </h2>
+
+  <div style="font-size:1.3em; line-height:1.6; text-align:left;">
+    <p class="fragment fade-up" style="font-weight:600; margin:0 0 .4em 0;">
+      Swift Immediate based on ORC JIT
+    </p>
+    <ul style="margin:0 0 1.5em 2em; padding:0;">
+      <li class="fragment fade-up">
+        swift -e 'print(1+1)' to get 2 immediately
+      </li>
+      <li class="fragment fade-up">
+        Makes use of EagerSwiftMaterializationUnit
+      </li>
+
+    </ul>
+
+    <p class="fragment fade-up" style="font-weight:600; margin:0 0 .4em 0;">
+      How this works as per my understanding
+    </p>
+    <ul style="margin:0 0 1.5em 2em; padding:0;">
+      <li class="fragment fade-up">1AST/ASTCONTEXT -> 1 Module -> 1 ModuleDecl -> 1SourceFile</li>
+      <li class="fragment fade-up">SourceFile being incrementally updated with deltas</li>
+      <li class="fragment fade-up">PersistantParserstate plays the role of IncrementalParser</li>
+      <li class="fragment fade-up">PersistantParserstate -> parseintosourcefile -> Incrementally generate SILModule</li>
+      <li class="fragment fade-up">-> create EagerSwiftMaterializationUnit and use similar toolchain like immediate</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2 style="margin:0 0 1em 0; text-align:left;">
+    Transitioning from 1st to 2nd iteration
+  </h2>
+
+  <div style="font-size:1.3em; line-height:1.6; text-align:left;">
+    <p class="fragment fade-up" style="font-weight:600; margin:0 0 .4em 0;">
+      Why we need it ?
+    </p>
+    <ul style="margin:0 0 1.5em 2em; padding:0;">
+      <li class="fragment fade-up">
+        Understand why having 3 degrees of freedom work better for a REPL
+      </li>
+      <li class="fragment fade-up">
+        Better error recovery and Isolation of incoming deltas
+      </li>
+      <li class="fragment fade-up">
+        Helps in future like implement features like Debugger Support
+      </li>
+      <li class="fragment fade-up">
+        We are JITTing a SIL Module which doesn't identify uniquely like a LLVM Module
+      </li>
+
+    </ul>
+  </div>
+</section>
+
+<section>
+  <!-- Title -->
+  <h2 style="font-size:2.4em; font-weight:700; text-align:center; margin-bottom:0.6em;">
+    Error recovery
+  </h2>
+
+  <!-- Image (timeit gif) -->
+  <div style="text-align:center;">
+    <img src="src/images/timeit_latest.gif"
+         alt="Timeit magic demo"
+         style="max-width:70%; max-height:auto; display:inline-block; margin:0 auto;
+                border-radius:10px; box-shadow:0 8px 28px rgba(0,0,0,.25);" />
+  </div>
+</section>
+
+<section>
+  <!-- Title -->
+  <h2 style="font-size:2.4em; font-weight:700; text-align:center; margin-bottom:0.6em;">
+    Debugger Support
+  </h2>
+
+  <!-- Image (timeit gif) -->
+  <div style="text-align:center;">
+    <img src="src/images/timeit_latest.gif"
+         alt="Timeit magic demo"
+         style="max-width:70%; max-height:auto; display:inline-block; margin:0 auto;
+                border-radius:10px; box-shadow:0 8px 28px rgba(0,0,0,.25);" />
+  </div>
+</section>
+
+<section>
+  <!-- Title -->
+  <h2 style="font-size:2.4em; font-weight:700; text-align:center; margin-bottom:0.6em;">
+    Debugger Support
+  </h2>
+
+  <!-- Image (timeit gif) -->
+  <div style="text-align:center;">
+    <img src="src/images/timeit_latest.gif"
+         alt="Timeit magic demo"
+         style="max-width:70%; max-height:auto; display:inline-block; margin:0 auto;
+                border-radius:10px; box-shadow:0 8px 28px rgba(0,0,0,.25);" />
+  </div>
+</section>
+
+<section>
+  <!-- Title -->
+  <h2 style="font-size:2.4em; font-weight:700; text-align:center; margin-bottom:0.6em;">
+    Debugger Support
+  </h2>
+
+  <!-- Image (timeit gif) -->
+  <div style="text-align:center;">
+    <img src="src/images/timeit_latest.gif"
+         alt="Timeit magic demo"
+         style="max-width:70%; max-height:auto; display:inline-block; margin:0 auto;
+                border-radius:10px; box-shadow:0 8px 28px rgba(0,0,0,.25);" />
+  </div>
+</section>
+
+<section>
+  <h2 style="margin:0 0 1em 0; text-align:left;">
+    Comparing 1st vs 2nd iteration
+  </h2>
+
+  <div style="font-size:1.3em; line-height:1.6; text-align:left;">
+    <p class="fragment fade-up" style="font-weight:600; margin:0 0 .4em 0;">
+      First Iteration
+    </p>
+    <ul style="margin:0 0 1.5em 2em; padding:0;">
+      <li class="fragment fade-up">1AST/ASTCONTEXT -> 1 Module -> 1 ModuleDecl -> 1SourceFile</li>
+      <li class="fragment fade-up">PersistantParserstate -> parseintosourcefile -> Incrementally generate SILModule</li>
+      <li class="fragment fade-up">-> create EagerSwiftMaterializationUnit and use similar toolchain like immediate</li>
+    </ul>
+
+    <p class="fragment fade-up" style="font-weight:600; margin:0 0 .4em 0;">
+      Second Iteration
+    </p>
+    <ul style="margin:0 0 1.5em 2em; padding:0;">
+      <li class="fragment fade-up">1AST/ASTCONTEXT -> 1 Module -> 1 ModuleDecl -> 1SourceFile</li>
+      <li class="fragment fade-up">1SourceFile gives us many PartialSourceFiles (so PSF just like PTU)</li>
+      <li class="fragment fade-up">1 Partial one -> {1 SourceFile per input + incremental SIL Module generated}</li>
+      <li class="fragment fade-up">-> create EagerSwiftMaterializationUnit and use similar toolchain like immediate</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2 style="margin:0 0 1em 0; text-align:left;">
+    Comparing 1st vs 2nd iteration
+  </h2>
+
+  <div style="font-size:1.3em; line-height:1.6; text-align:left;">
+    <p class="fragment fade-up" style="font-weight:600; margin:0 0 .4em 0;">
+      Second Iteration
+    </p>
+    <ul style="margin:0 0 1.5em 2em; padding:0;">
+      <li class="fragment fade-up">PR : https://github.com/swiftlang/swift/pull/77666 </li>
+      <li class="fragment fade-up">We might want to allow adding sourcefiles after moduledecl creation only if they are of type REPL</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2 style="margin:0 0 1em 0; text-align:left;">
+    Roadmap
+  </h2>
+
+  <div style="font-size:1.3em; line-height:1.6; text-align:left;">
+    
+    <p class="fragment fade-up" style="font-weight:600; margin:0 0 .4em 0;">
+      1) Revamp compiler-centric PR
+    </p>
+    <ul style="margin:0 1.5em 1em 2em; padding:0;">
+      <li class="fragment fade-up">
+        Integrate <code>EagerMaterializationUnit</code> through ORC JIT.
+      </li>
+    </ul>
+
+    <p class="fragment fade-up" style="font-weight:600; margin:0 0 .4em 0;">
+      2) Improve it to have an Interpreter-like structure
+    </p>
+    <ul style="margin:0 1.5em 1em 2em; padding:0;">
+      <li class="fragment fade-up">
+        Move towards an Interpreter-like architecture (<code>libswiftInterpreter</code>).
+      </li>
+      <li class="fragment fade-up">
+        Define key classes:
+        <ul style="margin:0.4em 0 0 1.5em;">
+          <li><code>Interpreter</code></li>
+          <li><code>IncrementalParser</code> — maintains persistent parser state</li>
+          <li><code>IncrementalExecutor</code> — handles JIT for native and Wasm execution</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2 style="margin:0 0 1em 0; text-align:left;">
+    Roadmap
+  </h2>
+
+  <div style="font-size:1.3em; line-height:1.6; text-align:left;">
+    <p class="fragment fade-up" style="font-weight:600; margin:0 0 .4em 0;">
+      3) This should be enough to come up with <code>xeus-swift</code>
+    </p>
+
+    <p class="fragment fade-up" style="font-weight:600; margin:1em 0 .4em 0;">
+      4) Split the work
+    </p>
+    <ul style="margin:0 1.5em 1em 2em; padding:0;">
+      <li class="fragment fade-up">
+        Some can focus on compiling <code>swift-repl</code> and <code>xeus-swift</code> to Wasm for <code>xeus-swift-lite</code>.
+      </li>
+      <li class="fragment fade-up">
+        Some can work on moving from <code>swift-repl</code> version 1 → version 2 (enabling the 3rd degree of freedom).
+      </li>
+      <li class="fragment fade-up">
+        Add tests using a framework similar to <code>clang-repl</code> on LLVM (<code>clangInterpreterTests</code>).
+      </li>
+    </ul>
+
+    <p class="fragment fade-up" style="font-weight:600; margin:1em 0 .4em 0;">
+      5) Last effort
+    </p>
+    <ul style="margin:0 1.5em 1em 2em; padding:0;">
+      <li class="fragment fade-up">
+        Implement debugger support for <code>xeus-swift</code>.
+      </li>
+    </ul>
   </div>
 </section>
       </div>
