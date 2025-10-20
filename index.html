@@ -167,9 +167,9 @@
 
   <!-- Image (dlopen) -->
   <div style="text-align:center;">
-    <img src="src/images/dlopen.png"
+    <img src="src/images/xeus_archi.svg"
          alt="dlopen flow"
-         style="max-width:90%; max-height:90vh; display:inline-block; margin:0 auto;
+         style="max-width:100%; max-height:100vh; display:inline-block; margin:0 auto;
                 border-radius:10px; box-shadow:0 8px 28px rgba(0,0,0,.25);" />
   </div>
 </section>
@@ -296,7 +296,7 @@
 
   <!-- Image (dlopen) -->
   <div style="text-align:center;">
-    <img src="src/images/dlopen.png"
+    <img src="src/images/lldb_wasm.png"
          alt="dlopen flow"
          style="max-width:90%; max-height:90vh; display:inline-block; margin:0 auto;
                 border-radius:10px; box-shadow:0 8px 28px rgba(0,0,0,.25);" />
@@ -329,7 +329,7 @@
 
   <!-- Image (dlopen) -->
   <div style="text-align:center;">
-    <img src="src/images/dlopen.png"
+    <img src="src/images/clang_repl_native.png"
          alt="dlopen flow"
          style="max-width:90%; max-height:90vh; display:inline-block; margin:0 auto;
                 border-radius:10px; box-shadow:0 8px 28px rgba(0,0,0,.25);" />
@@ -414,21 +414,16 @@
 
 <section>
   <!-- Title -->
-  <h2 style="font-size:2.4em; font-weight:700; text-align:center; margin-bottom:0.4em;">
-    clang-repl AST dump
+  <h2 style="font-size:2.4em; font-weight:700; text-align:center; margin-bottom:0.6em;">
+    Clang-repl AST dump
   </h2>
 
-  <!-- Large Code block (main focus) -->
-  <div style="max-width:1500px;margin:0 auto;box-shadow:0 10px 28px rgba(0,0,0,.25);
-              border-radius:8px; overflow:hidden; font-size:1.8em;">
-    <pre><code class="language-cpp">
-emcc custom_module.cpp \
-    -O2 \
-    -s SIDE_MODULE=1 \
-    -s WASM=1 \
-    -fPIC \
-    -o custom_module.so
-    </code></pre>
+  <!-- Image (dlopen) -->
+  <div style="text-align:center;">
+    <img src="src/images/ast_dump.png"
+         alt="dlopen flow"
+         style="max-width:90%; max-height:90vh; display:inline-block; margin:0 auto;
+                border-radius:10px; box-shadow:0 8px 28px rgba(0,0,0,.25);" />
   </div>
 </section>
 
@@ -458,8 +453,26 @@ emcc custom_module.cpp \
 
 <section>
   <h2 style="margin:0 0 1em 0; text-align:left;">
-    Add code block here
+    What was done here ?
   </h2>
+
+  <div style="font-size:1.3em; line-height:1.6; text-align:left;">
+    <p class="fragment fade-up" style="font-weight:600; margin:0 0 .4em 0;">
+      Respective changes
+    </p>
+    <ul style="margin:0 0 1.5em 2em; padding:0;">
+      <li class="fragment fade-up">
+        Incremental Parser adds TUDECL node:
+        <a href="https://github.com/llvm/llvm-project/blob/0731f18ba9caee809bca43a67d0a4893a147011e/clang/lib/Interpreter/IncrementalParser.cpp#L58-L59"
+           target="_blank">link</a>
+      </li>
+      <li class="fragment fade-up">
+        Incremental TU Kind:
+        <a href="https://github.com/llvm/llvm-project/blob/907335c00c283e72373d4dd1b86bd057357c7f01/clang/include/clang/AST/ASTContext.h#L1238-L1245"
+           target="_blank">link</a>
+      </li>
+    </ul>
+  </div>
 </section>
 
 <section>
