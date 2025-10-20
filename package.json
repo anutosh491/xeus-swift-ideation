@@ -1,0 +1,19 @@
+{
+  "name": "pydata2025",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "typescript": "~5.8.3",
+    "vite": "^6.3.5"
+  },
+  "dependencies": {
+    "@types/reveal.js": "^5.2.0",
+    "reveal.js": "^5.2.1"
+  }
+}
